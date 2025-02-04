@@ -1,10 +1,17 @@
 import React from "react";
 import TItem from "./tItem";
-import styled from "styled-components";
 
 const TBody = (props) => {
-  return props.users.map((item) => {
-    return <TItem key={item.id} {...item} />;
+  console.log(props);
+  return props.users.map((item, index) => {
+    return (
+      <TItem
+        key={item.id}
+        count={index + 1}
+        onDelete={props.onDelete}
+        {...item}
+      />
+    );
   });
 };
 

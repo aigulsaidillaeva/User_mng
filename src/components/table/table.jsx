@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import TBody from "./tBody";
+import { Modal } from "../UI/modal";
+import Button from "../UI/Button";
 
 const THEADER_ITEM = [
   { id: "f1", name: "id" },
@@ -12,10 +14,24 @@ const THEADER_ITEM = [
 ];
 
 const Table = (props) => {
+  const [modal, setModal] = useState(false);
+  const modalHandler = () => {
+    setModal((prevState) => !prevState);
+  };
+  console.log(modal);
   return (
     <StyledTable>
+      <Modal open={modal}>
+        <div>
+          <h1>Вы уверены</h1>
+          <div>
+            <Button title="NET" variant="default" />
+            <Button title="DA" variant="warning" onClick={onDelete(id)} />
+          </div>
+        </div>
+      </Modal>
       <THeader />
-      <TBody users={props.users} />
+      <TBody {...props} onDelete={modalHandler} />
     </StyledTable>
   );
 };

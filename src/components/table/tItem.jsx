@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
-import Button from "../UI/Button";
 import styled from "styled-components";
+import Button from "../UI/Button";
 
 const TItem = (props) => {
-  const { id, user, password, email } = props;
+  const { id, user, password, email, count } = props;
   return (
     <StyledTr>
-      <StyledTd>{id}</StyledTd>
+      <StyledTd>{count}</StyledTd>
       <StyledTd>{user}</StyledTd>
       <StyledTd>{password}</StyledTd>
       <StyledTd>{email}</StyledTd>
@@ -23,7 +23,6 @@ const StyledTr = styled.tr`
   &:nth-child(even) {
     background-color: grey;
   }
-
   padding: 20px;
 `;
 const StyledTd = styled.td`
