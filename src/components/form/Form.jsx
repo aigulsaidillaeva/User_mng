@@ -4,11 +4,11 @@ import styled from "styled-components";
 import Button from "../UI/Button";
 
 const Form = (props) => {
-  console.log(props.obje);
   const [user, setUser] = useState(props.obje.user);
   const [password, setPassword] = useState(props.obje.password);
   const [email, setEmail] = useState(props.obje.email);
 
+  //устанавливаем значение из инпута
   const userValueHandler = (event) => {
     setUser(event.target.value);
   };
@@ -19,6 +19,7 @@ const Form = (props) => {
     setEmail(event.target.value);
   };
 
+  //событие каторое добавляет юзера при нажатии кнопки
   function addHandler(event) {
     event.preventDefault();
     const newUserObj = {
@@ -31,7 +32,9 @@ const Form = (props) => {
     setUser("");
     setPassword("");
   }
+
   return (
+    //форма для добавление юзера
     <StyledForm onSubmit={addHandler}>
       <StyledBox>
         <Input
@@ -65,6 +68,8 @@ const Form = (props) => {
     </StyledForm>
   );
 };
+
+//стилизация формы
 const StyledForm = styled.form``;
 const StyledBox = styled.div`
   margin-bottom: 15px;

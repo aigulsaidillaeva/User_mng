@@ -2,6 +2,7 @@ import React from "react";
 import TItem from "./tItem";
 
 const TBody = (props) => {
+  //Список столбцов
   return props.users.map((item, index) => {
     return (
       <TItem

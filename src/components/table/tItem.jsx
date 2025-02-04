@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 const TItem = (props) => {
   const { id, user, password, email, count, onDelete, onView } = props;
   return (
+    //поля там где заполняются данные юзера
     <StyledTr>
       <StyledTd>{count}</StyledTd>
       <StyledTd>{user}</StyledTd>
@@ -27,6 +28,8 @@ const TItem = (props) => {
     </StyledTr>
   );
 };
+
+//стилизвция таблицы
 const StyledTr = styled.tr`
   &:nth-child(even) {
     background-color: grey;
