@@ -38,9 +38,9 @@ const getButtonStyles = (props) => {
 };
 
 const Button = (props) => {
-  const { title, variant, ...rest } = props;
+  const { title, variant, onClick, ...rest } = props;
   return (
-    <StyledButton variant={variant} {...rest}>
+    <StyledButton variant={variant} onClick={onClick} {...rest}>
       {title}
     </StyledButton>
   );

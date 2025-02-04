@@ -11,8 +11,15 @@ const USERS = [
 const App = () => {
   const [users, setUsers] = useState(USERS);
   const [modal, setModal] = useState(false);
+  const [obje, setObje] = useState({
+    id: "",
+    user: "",
+    email: "",
+    password: "",
+  });
   function modalHandelr() {
     setModal((prewState) => !prewState);
+    setObje({ id: "", user: "", email: "", password: "" });
   }
   function addUser(param) {
     console.log(param);
@@ -20,15 +27,31 @@ const App = () => {
       ...param,
       id: crypto.randomUUID(),
     };
+
     setUsers([...users, newUserObject]);
     setModal(false);
   }
+
+  function deleteUser(param) {
+    const exchangedUsers = users.filter((item) => item.id !== param.id);
+    setUsers(exchangedUsers);
+    setModal(false);
+  }
+  function viewUser(param) {
+    setObje({
+      user: param.user,
+      password: param.password,
+      email: param.email,
+    });
+    setModal(true);
+  }
+
   return (
     <div>
       <Button variant="default" title="ADD USER" onClick={modalHandelr} />
-      <Table users={users} />
+      <Table users={users} onDelete={deleteUser} onView={viewUser} />
       <Modal open={modal}>
-        <Form onCancel={modalHandelr} onSubmit={addUser} />
+        <Form onCancel={modalHandelr} onSubmit={addUser} obje={obje} />
       </Modal>
     </div>
   );

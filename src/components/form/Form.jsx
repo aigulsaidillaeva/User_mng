@@ -4,9 +4,10 @@ import styled from "styled-components";
 import Button from "../UI/Button";
 
 const Form = (props) => {
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  console.log(props.obje);
+  const [user, setUser] = useState(props.obje.user);
+  const [password, setPassword] = useState(props.obje.password);
+  const [email, setEmail] = useState(props.obje.email);
 
   const userValueHandler = (event) => {
     setUser(event.target.value);
@@ -26,6 +27,9 @@ const Form = (props) => {
       email: email,
     };
     props.onSubmit(newUserObj);
+    setEmail("");
+    setUser("");
+    setPassword("");
   }
   return (
     <StyledForm onSubmit={addHandler}>
@@ -55,7 +59,7 @@ const Form = (props) => {
       </StyledBox>
 
       <OtherBox>
-        <Button title="cancel" variant="warning" onCLick={props.onCancel} />
+        <Button title="cancel" variant="warning" onClick={props.onCancel} />
         <Button title="Submit" variant="default" type="submit" />
       </OtherBox>
     </StyledForm>

@@ -12,26 +12,37 @@ const THEADER_ITEM = [
   { id: "f5", name: "view" },
   { id: "f6", name: "delete" },
 ];
-
+const deletingUser = {
+  id: null,
+  user: "",
+};
 const Table = (props) => {
   const [modal, setModal] = useState(false);
-  const modalHandler = () => {
+
+  const modalHandler = (param) => {
+    deletingUser.id = param.id;
+    deletingUser.user = param.user;
     setModal((prevState) => !prevState);
   };
-  console.log(modal);
+
+  function deleteUserHandler() {
+    props.onDelete(deletingUser);
+    setModal(false);
+  }
+
   return (
     <StyledTable>
       <Modal open={modal}>
         <div>
-          <h1>Вы уверены</h1>
+          <h1>Вы уверены удалить {deletingUser.user}</h1>
           <div>
-            <Button title="NET" variant="default" />
-            <Button title="DA" variant="warning" onClick={onDelete(id)} />
+            <Button title="NET" onClick={modalHandler} variant="default" />
+            <Button title="DA" variant="warning" onClick={deleteUserHandler} />
           </div>
         </div>
       </Modal>
       <THeader />
-      <TBody {...props} onDelete={modalHandler} />
+      <TBody {...props} onDelete={modalHandler} onView={props.onView} />
     </StyledTable>
   );
 };

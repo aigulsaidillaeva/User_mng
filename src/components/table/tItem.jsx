@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "../UI/Button";
 
 const TItem = (props) => {
-  const { id, user, password, email, count } = props;
+  const { id, user, password, email, count, onDelete, onView } = props;
   return (
     <StyledTr>
       <StyledTd>{count}</StyledTd>
@@ -11,10 +11,18 @@ const TItem = (props) => {
       <StyledTd>{password}</StyledTd>
       <StyledTd>{email}</StyledTd>
       <StyledTd>
-        <Button title="view" variant="secondary" />
+        <Button
+          title="view"
+          variant="secondary"
+          onClick={() => onView({ id, user, password, email })}
+        />
       </StyledTd>
       <StyledTd>
-        <Button title="delete" variant="warning" />
+        <Button
+          title="delete"
+          variant="warning"
+          onClick={() => onDelete({ id, user })}
+        />
       </StyledTd>
     </StyledTr>
   );
